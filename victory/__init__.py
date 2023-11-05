@@ -9,20 +9,19 @@ import random
 
 class App:
     def __init__(self, args:Namespace) -> None:
-        self.args = args
-        self.root = root = tk.Tk()
-        self.get_file()
-        self.get_questions_count()
         self.qu = None
         self.state = 0
+        self.args = args
+        self.root = root = tk.Tk()
         self.root.title("Victory")
-        self.childs = []
-
+        self.get_file()
+        self.get_questions_count()
+        
     def end(self):
         if self.ent.get() == self.q[self.qc-1][1]:
             self.state += 1
         else:
-            self.state -= 1
+            self.state -= 0
         self.lb.destroy()
         self.ent.destroy()
         self.btn.destroy()
@@ -89,6 +88,7 @@ class App:
             self.ok.pack()
         else:
             self.qc = self.args.count
+            self.get_questions()
 
     def get_file(self):
         if not self.args.file:
@@ -100,7 +100,7 @@ class App:
                 messagebox.showerror("Нет Файла", "Файл не выбран")
                 exit(1)
         else:
-            self.file = self.args.file
+            self.victory_file = self.args.file
         
 
 
